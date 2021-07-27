@@ -1,0 +1,40 @@
+name: My Build
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+
+  install:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set pkgs_dirs
+        run: |
+          echo "pkgs_dirs: [/home/u80079/work/pkgs]" >> /home/u80079/.condarc
+
+      - name: Cache conda packages
+        uses: actions/cache@v2
+        env:
+          CACHE_NUMBER: 0  # Increase to reset cache
+        with:
+          path: /home/u80079/work/pkgs
+          key:
+            ${{ runner.os }}-conda-build-${{ env.CACHE_NUMBER }}
+
+      - name: Add conda to system path
+        run: echo /home/u80079/work/miniconda3/bin >> $GITHUB_PATH
+
+      - name: Install dpctl
+        run: |
+          CHANNELS="-c intel -c defaults --override-channels"
+          conda install dpctl $CHANNELS
+
+      - name: Run tests
+        run: |
+          python -m pytest --pyargs dpctl
