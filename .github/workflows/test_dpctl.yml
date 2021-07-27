@@ -6,7 +6,6 @@ on:
     branches: [master]
 
 jobs:
-
   install:
     runs-on: self-hosted
     steps:
