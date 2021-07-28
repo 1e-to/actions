@@ -21,9 +21,13 @@ jobs:
         run: |
           source /home/u80079/work/miniconda3/bin/activate
 
-      - name: Set pkgs_dirs
+      # - name: Set pkgs_dirs
+      #   run: |
+      #     echo "pkgs_dirs: [/home/u80079/work/pkgs]" >> /home/u80079/.condarc
+
+      - name: Which conda
         run: |
-          echo "pkgs_dirs: [/home/u80079/work/pkgs]" >> /home/u80079/.condarc
+          which conda
 
       - name: Cache conda packages
         uses: actions/cache@v2
