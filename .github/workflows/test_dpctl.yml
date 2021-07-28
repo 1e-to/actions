@@ -28,15 +28,16 @@ jobs:
 
       - name: Check $GITHUB_PATH
         run: |
-          echo $GITHUB_PATH
+          cat $GITHUB_PATH
 
       - name: Add conda to system path
         run: echo $CONDA/bin >> $GITHUB_PATH
 
-      - name: Install dpctl
+      - name: Install dpctl and pytest
         run: |
           CHANNELS="-c intel -c defaults --override-channels"
           conda install dpctl $CHANNELS
+          conda install pytest $CHANNELS
 
       - name: Run tests
         run: |
