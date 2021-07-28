@@ -17,9 +17,9 @@ jobs:
         run: |
           which conda
 
-      - name: Conda deactivate
+      - name: Conda activate
         run: |
-          conda deactivate
+          source /home/u80079/work/miniconda3/bin/activate
 
       - name: Set pkgs_dirs
         run: |
