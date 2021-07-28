@@ -45,10 +45,11 @@ jobs:
       - name: Add conda to system path
         run: echo /home/u80079/work/miniconda3/bin >> $GITHUB_PATH
 
-      - name: Install dpctl
+      - name: Install dpctl and pytest
         run: |
           CHANNELS="-c intel -c defaults --override-channels"
           conda install dpctl $CHANNELS
+          conda install pytest $CHANNELS
 
       - name: Run tests
         run: |
