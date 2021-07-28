@@ -13,6 +13,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Which conda
+        run: |
+          which conda
+
       - name: Set pkgs_dirs
         run: |
           echo "pkgs_dirs: [/home/u80079/work/pkgs]" >> /home/u80079/.condarc
