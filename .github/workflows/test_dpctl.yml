@@ -15,19 +15,23 @@ jobs:
 
       - name: Set pkgs_dirs
         run: |
-          echo "pkgs_dirs: [/home/u80079/work/pkgs]" >> /home/u80079/.condarc
+          echo "pkgs_dirs: [~/.conda/pkgs]" >> ~/.condarc
 
       - name: Cache conda packages
         uses: actions/cache@v2
         env:
           CACHE_NUMBER: 0  # Increase to reset cache
         with:
-          path: /home/u80079/work/pkgs
+          path: ~/.conda/pkgs
           key:
             ${{ runner.os }}-conda-build-${{ env.CACHE_NUMBER }}
 
+      - name: Check $GITHUB_PATH
+        run: |
+          echo $GITHUB_PATH
+
       - name: Add conda to system path
-        run: echo /home/u80079/work/miniconda3/bin >> $GITHUB_PATH
+        run: echo $CONDA/bin >> $GITHUB_PATH
 
       - name: Install dpctl
         run: |
