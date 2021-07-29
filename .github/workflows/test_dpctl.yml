@@ -13,6 +13,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Cleaning up previous run
+        run: |
+          echo "${{ github.workspace }}"
+          echo ${{ github.workspace }}
+          # rm -rf "${{ github.workspace }}"
+
       - name: Which conda
         run: |
           which conda
